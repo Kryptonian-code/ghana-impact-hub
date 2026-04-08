@@ -1,5 +1,5 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Outlet } from "react-router-dom";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
@@ -25,6 +25,14 @@ import AdminDashboard from "./pages/admin/Dashboard";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
+
+function PublicLayout() {
+  return (
+    <Layout>
+      <Outlet />
+    </Layout>
+  );
+}
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -60,14 +68,5 @@ const App = () => (
     </TooltipProvider>
   </QueryClientProvider>
 );
-
-function PublicLayout() {
-  const { Outlet } = require("react-router-dom");
-  return (
-    <Layout>
-      <Outlet />
-    </Layout>
-  );
-}
 
 export default App;
